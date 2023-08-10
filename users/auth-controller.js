@@ -12,9 +12,6 @@ const AuthController = (app) => {
         const newUser = req.body;
         const newUserId = usersDao.createUser(newUser)
         req.session["currentUser"] = newUserId
-        console.log(req.session["currentUser"]);
-        console.log("new user:")
-        console.log(newUser)
         res.json(newUser)
     };
 
@@ -34,11 +31,8 @@ const AuthController = (app) => {
         const currentUser = req.session["currentUser"];
         if (!currentUser) {
             res.sendStatus(404);
-            console.log("Not current user")
             return;
         }
-        console.log("Current user valid")
-        console.log(currentUser)
         res.json(currentUser);
     };
 
@@ -52,11 +46,8 @@ const AuthController = (app) => {
         const newUser = usersDao.updateUser(userId, req.body);
         req.session["currentUser"] = usersDao.findUserById(userId);
         if (newUser) {
-            console.log('Updating user:', newUser);
             res.json(newUser);
-            console.log(newUser);
           } else {
-            console.log('Failed');
             res.sendStatus(404);
         }
     };
