@@ -8,7 +8,7 @@ const AuthController = (app) => {
             res.sendStatus(409);
             return;
         }
-        const newUser = await userDao.createUser(req.body);
+        const newUser = await usersDao.createUser(req.body);
         req.session["currentUser"] = newUser
         res.json(newUser)
     };
@@ -22,9 +22,11 @@ const AuthController = (app) => {
                 req.session["currentUser"] = user;
                 res.json(user);
             } else {
+                console.log("User not found")
                 res.sendStatus(403);
             }
         } else {
+            console.log("Username and password not sent correctly")
             res.sendStatus(403);
         }
     };

@@ -1,6 +1,7 @@
 import * as tuitsDao from './tuits-dao.js'
 
 const createTuit = async (req, res) => {
+    console.log(req.session["currentUser"])
     const newTuit = req.body;
     newTuit.likes = 0;
     newTuit.dislikes = 0;
@@ -23,13 +24,12 @@ const updateTuit = async (req, res) => {
     const status = await tuitsDao
         .updateTuit(tuitdIdToUpdate, updates);
     res.json(status);
-    res.sendStatus(200);
 }
 
 const deleteTuit = async (req, res) => {
     const tuitdIdToDelete = req.params.tid;
     const status = await tuitsDao.deleteTuit(tuitdIdToDelete);
-    res.sendStatus(status);
+    res.json(status);
 }
 
 
