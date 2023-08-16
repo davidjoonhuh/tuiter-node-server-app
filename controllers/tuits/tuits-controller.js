@@ -1,7 +1,7 @@
 import * as tuitsDao from './tuits-dao.js'
 
 const createTuit = async (req, res) => {
-    console.log(req.session["currentUser"])
+    console.log(req.session)
     const newTuit = req.body;
     newTuit.likes = 0;
     newTuit.dislikes = 0;

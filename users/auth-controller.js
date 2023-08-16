@@ -32,6 +32,9 @@ const AuthController = (app) => {
     };
 
 const profile = (req, res) => {
+    console.log("profile")
+    console.log(req.session)
+    console.log("profile")
     const currentUser = req.session["currentUser"];
     if (!currentUser) {
         res.sendStatus(404);
